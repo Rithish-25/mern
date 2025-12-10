@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Simple API Server</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{--bg:#f4f6f8;--card:#fff;--muted:#667085}
+    body{font-family:Inter,system-ui,Arial; margin:0; background:var(--bg); color:#0f172a}
+    .wrap{max-width:900px;margin:40px auto;padding:20px}
+    header{display:flex;align-items:center;gap:14px}
+    h1{margin:0;font-size:28px}
+    .subtitle{color:var(--muted);margin-top:6px}
+    .card{background:var(--card);border-radius:12px;padding:22px;margin-top:20px;box-shadow:0 6px 20px rgba(2,6,23,0.06)}
+    .endpoint{display:flex;gap:12px;align-items:center;font-weight:600}
+    .badge{background:#f1f5f9;border-radius:6px;padding:6px 8px;border:1px solid #e6eef7;font-family:monospace;color:#0f172a}
+    footer{margin-top:28px;color:var(--muted);font-size:13px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:8px;text-decoration:none;border:0;background:#0ea5a4;color:#fff;font-weight:600;margin-right:10px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <svg width="44" height="44" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect width="24" height="24" rx="6" fill="#0ea5a4"/>
+        <path d="M7 13l3 3 7-9" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <h1>🚀 Simple User API</h1>
+        <div class="subtitle">Backend is running — test routes with Thunder Client or Postman</div>
+      </div>
+    </header>
+
+    <div class="card">
+      <h2>Available API Endpoints</h2>
+      <p style="margin:8px 0" class="endpoint"><strong>GET:</strong> <span class="badge">/api/users</span></p>
+      <p style="margin:8px 0" class="endpoint"><strong>GET:</strong> <span class="badge">/api/users/:id</span></p>
+      <p style="margin:8px 0" class="endpoint"><strong>POST:</strong> <span class="badge">/api/users</span></p>
+      <p style="margin:8px 0" class="endpoint"><strong>PUT:</strong> <span class="badge">/api/users/:id</span></p>
+      <p style="margin:8px 0" class="endpoint"><strong>DELETE:</strong> <span class="badge">/api/users/:id</span></p>
+    </div>
+
+    <div class="card">
+      <h3>Quick actions</h3>
+      <p class="subtitle">Try these from Thunder Client</p>
+      <p><code>GET http://localhost:3000/api/users</code></p>
+      <p style="margin-top:12px">
+        <a class="btn" href="#" onclick="copy('http://localhost:3000/api/users')">Copy GET URL</a>
+        <a class="btn" href="#" onclick="openApi()">Open GET in new tab</a>
+      </p>
+    </div>
+
+    <footer>
+      Tip: use Chrome/Edge and open <code>http://localhost:3000/</code>. If routes return 404, confirm server is running with <code>npm start</code> in the <code>back</code> folder.
+    </footer>
+  </div>
+
+  <script>
+    function copy(text){
+      navigator.clipboard?.writeText(text).then(()=> alert('Copied to clipboard'));
+    }
+    function openApi(){ window.open('/api/users','_blank'); }
+  </script>
+</body>
+</html>
