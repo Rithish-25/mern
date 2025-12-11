@@ -78,11 +78,19 @@
   transform: translateY(-2px);
   box-shadow: var(--shadow);
   background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+  color: white;
 }
 
 .nav-link-btn-primary.active {
   color: white;
   background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+}
+
+.nav-link-btn-primary.active:hover {
+  background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
 }
 
 .nav-link-btn-primary.active::after {

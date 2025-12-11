@@ -16,22 +16,15 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          <span className="logo-text">Home</span>
+          <span className="logo-text">Front</span>
         </Link>
         
         <div className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <Link 
-            to="/" 
-            className={`nav-link ${isActive('/') ? 'active' : ''}`}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            {/* Home
-          </Link>
-          <Link 
             to="/about" 
             className={`nav-link ${isActive('/about') ? 'active' : ''}`}
             onClick={() => setIsMenuOpen(false)}
-          > */}
+          >
             About
           </Link>
           <Link 
