@@ -44,7 +44,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          <span className="logo-text">Front</span>
+          <span className="logo-text">Home</span>
         </Link>
         
         <div className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
