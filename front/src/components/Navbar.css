@@ -97,6 +97,26 @@
   display: none;
 }
 
+.nav-link-btn-logout {
+  padding: 0.5rem 1.5rem;
+  background: #dc2626;
+  color: white;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.nav-link-btn-logout:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+  color: white;
+}
+
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -154,7 +174,8 @@
   }
 
   .nav-link-btn,
-  .nav-link-btn-primary {
+  .nav-link-btn-primary,
+  .nav-link-btn-logout {
     margin: 0.5rem 1rem;
     display: block;
     width: calc(100% - 2rem);
