@@ -1,12 +1,40 @@
-import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import './Navbar.css'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
 
   const isActive = (path) => location.pathname === path
+
+  useEffect(() => {
+    const authStatus = localStorage.getItem('isAuthenticated') === 'true'
+    setIsAuthenticated(authStatus)
+
+    const handleStorageChange = () => {
+      const authStatus = localStorage.getItem('isAuthenticated') === 'true'
+      setIsAuthenticated(authStatus)
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+    window.addEventListener('authChange', handleStorageChange)
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      window.removeEventListener('authChange', handleStorageChange)
+    }
+  }, [])
+
+  const handleLogout = () => {
+    localStorage.removeItem('isAuthenticated')
+    localStorage.removeItem('userEmail')
+    window.dispatchEvent(new Event('authChange'))
+    navigate('/login', { replace: true })
+    setIsMenuOpen(false)
+  }
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -34,20 +62,31 @@ const Navbar = () => {
           >
             Contact
           </Link>
-          <Link 
-            to="/login" 
-            className={`nav-link nav-link-btn ${isActive('/login') ? 'active' : ''}`}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Login
-          </Link>
-          <Link 
-            to="/register" 
-            className={`nav-link nav-link-btn-primary ${isActive('/register') ? 'active' : ''}`}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Register
-          </Link>
+          {isAuthenticated ? (
+            <button 
+              onClick={handleLogout}
+              className="nav-link nav-link-btn"
+            >
+              Logout
+            </button>
+          ) : (
+            <>
+              <Link 
+                to="/login" 
+                className={`nav-link nav-link-btn ${isActive('/login') ? 'active' : ''}`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Login
+              </Link>
+              <Link 
+                to="/register" 
+                className={`nav-link nav-link-btn-primary ${isActive('/register') ? 'active' : ''}`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
 
         <div className="nav-toggle" onClick={toggleMenu}>

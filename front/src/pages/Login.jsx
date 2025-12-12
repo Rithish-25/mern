@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Auth.css'
 
 const Login = () => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -18,7 +19,22 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log('Login:', formData)
-    // Add your login logic here
+    
+    // Simulate login success (replace with actual API call)
+    // For demo purposes, we'll consider any valid email/password as successful
+    if (formData.email && formData.password) {
+      // Set authentication status
+      localStorage.setItem('isAuthenticated', 'true')
+      localStorage.setItem('userEmail', formData.email)
+      
+      // Dispatch custom event to update auth state in App
+      window.dispatchEvent(new Event('authChange'))
+      
+      // Redirect to home page
+      navigate('/', { replace: true })
+    } else {
+      alert('Please enter email and password')
+    }
   }
 
   return (

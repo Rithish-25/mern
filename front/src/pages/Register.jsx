@@ -1,8 +1,9 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Auth.css'
 
 const Register = () => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,7 +25,11 @@ const Register = () => {
       return
     }
     console.log('Register:', formData)
-    // Add your registration logic here
+    
+    // Simulate registration success (replace with actual API call)
+    // After successful registration, redirect to login
+    alert('Registration successful! Please login.')
+    navigate('/login')
   }
 
   return (
